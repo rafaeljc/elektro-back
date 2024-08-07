@@ -56,6 +56,24 @@ class UsuarioController {
       });
     }
   }
+
+  public async readAll(request: Request, response: Response) {
+    try {
+      const usuarios = await prisma.usuario.findMany({
+        select: {
+          id: true,
+          nome: true,
+          email: true,
+          dataNascimento: true,
+        }
+      });
+      return response.status(200).json(usuarios);
+    } catch (error) {
+      return response.status(500).json({
+        mensagem: "Não foi possível buscar todos usuários."
+      });
+    }
+  }
 }
 
 export const usuarioController = new UsuarioController();
