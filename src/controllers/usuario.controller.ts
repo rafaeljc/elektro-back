@@ -45,7 +45,7 @@ class UsuarioController {
         });
       }
 
-      return response.status(201).json({
+      return response.status(200).json({
         nome: usuario.nome,
         email: usuario.email,
         dataNascimento: usuario.dataNascimento,
