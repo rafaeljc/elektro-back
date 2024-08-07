@@ -40,7 +40,6 @@ class UsuarioController {
           id: Number(id)
         },
         select: {
-          id: true,
           nome: true,
           email: true,
           dataNascimento: true,
