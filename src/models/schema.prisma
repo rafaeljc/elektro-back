@@ -14,28 +14,28 @@ datasource db {
 }
 
 model Usuario {
-  id Int @id @default(autoincrement())
-  nome String
-  email String @unique
-  dataNascimento DateTime
-  hash String
-  salt String
+  id             Int      @id @default(autoincrement())
+  nome           String
+  email          String   @unique
+  dataNascimento DateTime 
+  hash           String
+  salt           String
 }
 
 model Produto {
-  id Int @id @default(autoincrement())
-  nome String
+  id        Int     @id @default(autoincrement())
+  nome      String
   descricao String
-  preco Float
-  ehNovo Boolean
-  imagem String
+  preco     Float
+  ehNovo    Boolean
+  imagem    String
 }
 
 model Cupom {
-  id Int @id @default(autoincrement())
-  nome String
-  descricao String
-  desconto Float
+  id           Int      @id @default(autoincrement())
+  nome         String
+  descricao    String
+  desconto     Float
   dataValidade DateTime
-  jaUtilizado Boolean @default(false)
+  jaUtilizado  Boolean  @default(false)
 }
