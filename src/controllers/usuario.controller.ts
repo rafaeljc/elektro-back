@@ -30,6 +30,32 @@ class UsuarioController {
       });
     }
   }
+
+  public async read(request: Request, response: Response) {
+    try {
+      const { id } = request.params;
+
+      const usuario = await prisma.usuario.findUnique({
+        where: { id: Number(id) },
+      });
+
+      if (!usuario) {
+        return response.status(404).json({
+          mensagem: "Usuário não cadastrado.",
+        });
+      }
+
+      return response.status(201).json({
+        nome: usuario.nome,
+        email: usuario.email,
+        dataNascimento: usuario.dataNascimento,
+      });
+    } catch (error) {
+      return response.status(500).json({
+        mensagem: "Não foi possível buscar o usuário."
+      });
+    }
+  }
 }
 
 export const usuarioController = new UsuarioController();
