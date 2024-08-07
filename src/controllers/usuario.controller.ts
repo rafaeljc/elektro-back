@@ -121,6 +121,29 @@ class UsuarioController {
       });
     }
   }
+
+  public async delete(request: Request, response: Response) {
+    try {
+      const { id } = request.params;
+
+      const usuarioRemovido = await prisma.usuario.delete({
+        where: { 
+          id: Number(id)
+        },
+        select: {
+          nome: true,
+          email: true,
+          dataNascimento: true,
+        }
+      });
+
+      return response.status(200).json(usuarioRemovido);
+    } catch (error) {
+      return response.status(500).json({
+        mensagem: "Não foi possível remover o usuário."
+      });
+    }
+  }
 }
 
 export const usuarioController = new UsuarioController();
