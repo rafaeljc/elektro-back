@@ -20,15 +20,18 @@ model Usuario {
   dataNascimento DateTime 
   hash           String
   salt           String
+  produtos       Produto[]
 }
 
 model Produto {
-  id        Int     @id @default(autoincrement())
-  nome      String
-  descricao String
-  preco     Float
-  ehNovo    Boolean
-  imagem    String
+  id            Int     @id @default(autoincrement())
+  nome          String
+  descricao     String
+  preco         Float
+  ehNovo        Boolean
+  imagem        String
+  cadastradoPor Usuario @relation(fields: [usuarioId], references: [id])
+  usuarioId     Int
 }
 
 model Cupom {
