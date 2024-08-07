@@ -21,6 +21,7 @@ model Usuario {
   hash           String
   salt           String
   produtos       Produto[]
+  cupons         Cupom[]
 }
 
 model Produto {
@@ -41,4 +42,6 @@ model Cupom {
   desconto     Float
   dataValidade DateTime
   jaUtilizado  Boolean  @default(false)
+  possuidoPor  Usuario  @relation(fields: [usuarioId], references: [id])
+  usuarioId    Int
 }
