@@ -36,7 +36,15 @@ class UsuarioController {
       const { id } = request.params;
 
       const usuario = await prisma.usuario.findUnique({
-        where: { id: Number(id) },
+        where: { 
+          id: Number(id)
+        },
+        select: {
+          id: true,
+          nome: true,
+          email: true,
+          dataNascimento: true,
+        }
       });
 
       if (!usuario) {
@@ -45,11 +53,7 @@ class UsuarioController {
         });
       }
 
-      return response.status(200).json({
-        nome: usuario.nome,
-        email: usuario.email,
-        dataNascimento: usuario.dataNascimento,
-      });
+      return response.status(200).json(usuario);
     } catch (error) {
       return response.status(500).json({
         mensagem: "Não foi possível buscar o usuário."
