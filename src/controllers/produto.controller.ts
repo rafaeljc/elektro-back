@@ -76,6 +76,26 @@ class ProdutoController {
       });
     }
   }
+
+  public async readAll(request: Request, response: Response) {
+    try {
+      const produtos = await prisma.produto.findMany({
+        select: {
+          id: true,
+          nome: true,
+          descricao: true,
+          preco: true,
+          ehNovo: true,
+          imagem: true,
+        }
+      });
+      return response.status(200).json(produtos);
+    } catch (error) {
+      return response.status(500).json({
+        mensagem: "Não foi possível buscar todos produtos."
+      });
+    }
+  }
 }
 
 export const produtoController = new ProdutoController();
