@@ -4,6 +4,14 @@ import { Request, Response } from "express";
 const prisma = new PrismaClient();
 
 class ProdutoController {
+  private static selectPadrao = {
+    nome: true,
+    descricao: true,
+    preco: true,
+    ehNovo: true,
+    imagem: true,
+  }
+
   private consigoConverterParaBooleano(valor: string) {
     // TODO:
     // - implementar middleware para fazer essa validação e depois
@@ -40,6 +48,31 @@ class ProdutoController {
     } catch (error) {
       return response.status(500).json({
         mensagem: "Não foi possível cadastrar o produto.",
+      });
+    }
+  }
+
+  public async read(request: Request, response: Response) {
+    try {
+      const { id } = request.params;
+
+      const produto = await prisma.produto.findUnique({
+        where: { 
+          id: Number(id)
+        },
+        select: ProdutoController.selectPadrao
+      });
+
+      if (!produto) {
+        return response.status(404).json({
+          mensagem: "Produto não cadastrado.",
+        });
+      }
+
+      return response.status(200).json(produto);
+    } catch (error) {
+      return response.status(500).json({
+        mensagem: "Não foi possível buscar o produto."
       });
     }
   }

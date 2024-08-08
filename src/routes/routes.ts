@@ -13,5 +13,6 @@ router.delete("/usuario/:id", usuarioController.delete);
 
 // Produto
 router.post("/produto", produtoController.create);
+router.get("/produto/:id", produtoController.read);
 
 export default router;
