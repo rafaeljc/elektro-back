@@ -133,6 +133,25 @@ class ProdutoController {
       });
     }
   }
+
+  public async delete(request: Request, response: Response) {
+    try {
+      const { id } = request.params;
+
+      const produtoRemovido = await prisma.produto.delete({
+        where: { 
+          id: Number(id)
+        },
+        select: ProdutoController.selectPadrao
+      });
+
+      return response.status(200).json(produtoRemovido);
+    } catch (error) {
+      return response.status(500).json({
+        mensagem: "Não foi possível remover o produto."
+      });
+    }
+  }
 }
 
 export const produtoController = new ProdutoController();
