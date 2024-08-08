@@ -16,6 +16,15 @@ type InputUsuario = {
 }
 
 class UsuarioController {
+  private static selectPadrao = {
+    cpf: true,
+    nome: true,
+    email: true,
+    dataNascimento: true,
+    telefone: true,
+    imagemPerfil: true,
+  }
+
   public async create(request: Request, response: Response) {
     try {
       const { cpf, nome, email, dataNascimento, telefone, senha, imagemPerfil } = request.body;
@@ -32,6 +41,9 @@ class UsuarioController {
           salt: salt,
           imagemPerfil: imagemPerfil,
         },
+        select: {
+          email: true
+        }
       });
 
       return response.status(201).json({
@@ -53,14 +65,7 @@ class UsuarioController {
         where: { 
           id: Number(id)
         },
-        select: {
-          cpf: true,
-          nome: true,
-          email: true,
-          dataNascimento: true,
-          telefone: true,
-          imagemPerfil: true,
-        }
+        select: UsuarioController.selectPadrao
       });
 
       if (!usuario) {
@@ -122,14 +127,7 @@ class UsuarioController {
           id: Number(id)
         },
         data: input,
-        select: {
-          cpf: true,
-          nome: true,
-          email: true,
-          dataNascimento: true,
-          telefone: true,
-          imagemPerfil: true,
-        }
+        select: UsuarioController.selectPadrao
       });
 
       return response.status(200).json(usuarioAtualizado);
@@ -148,14 +146,7 @@ class UsuarioController {
         where: { 
           id: Number(id)
         },
-        select: {
-          cpf: true,
-          nome: true,
-          email: true,
-          dataNascimento: true,
-          telefone: true,
-          imagemPerfil: true,
-        }
+        select: UsuarioController.selectPadrao
       });
 
       return response.status(200).json(usuarioRemovido);
