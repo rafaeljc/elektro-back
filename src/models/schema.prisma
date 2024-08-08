@@ -15,11 +15,14 @@ datasource db {
 
 model Usuario {
   id             Int      @id @default(autoincrement())
+  cpf            String   @unique
   nome           String
   email          String   @unique
-  dataNascimento DateTime 
+  dataNascimento DateTime
+  telefone       String?
   hash           String
   salt           String
+  imagemPerfil   String?
   produtos       Produto[]
   cupons         Cupom[]
 }
@@ -37,11 +40,14 @@ model Produto {
 
 model Cupom {
   id           Int      @id @default(autoincrement())
+  codigo       String
   nome         String
   descricao    String
-  desconto     Float
-  dataValidade DateTime
+  desconto     Float?
+  dataValidade DateTime?
   jaUtilizado  Boolean  @default(false)
+  compraMinima Float?
+  freteGratis  Boolean?
   possuidoPor  Usuario  @relation(fields: [usuarioId], references: [id])
   usuarioId    Int
 }
