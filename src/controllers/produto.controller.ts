@@ -3,6 +3,14 @@ import { Request, Response } from "express";
 
 const prisma = new PrismaClient();
 
+type InputProduto = {
+  nome?: string,
+  descricao?: string,
+  preco?: number,
+  ehNovo?: boolean,
+  imagem?: string,
+}
+
 class ProdutoController {
   private static selectPadrao = {
     nome: true,
@@ -93,6 +101,35 @@ class ProdutoController {
     } catch (error) {
       return response.status(500).json({
         mensagem: "Não foi possível buscar todos produtos."
+      });
+    }
+  }
+
+  public async update(request: Request, response: Response) {
+    try {
+      const { id } = request.params;
+      const { nome, descricao, preco, ehNovo, imagem } = request.body;
+      
+      // definindo informações que serão atualizadas
+      let input: InputProduto = {};
+      if (nome) input.nome = nome;
+      if (descricao) input.descricao = descricao;
+      if (preco) input.preco = parseFloat(preco);
+      if (ehNovo) input.ehNovo = this.consigoConverterParaBooleano(ehNovo) ? Boolean(ehNovo) : ehNovo;
+      if (imagem) input.imagem = imagem;
+
+      const produtoAtualizado = await prisma.produto.update({
+        where: {
+          id: Number(id)
+        },
+        data: input,
+        select: ProdutoController.selectPadrao
+      });
+
+      return response.status(200).json(produtoAtualizado);
+    } catch (error) {
+      return response.status(500).json({
+        mensagem: "Não foi possível atualizar os dados do produto."
       });
     }
   }
