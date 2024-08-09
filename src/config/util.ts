@@ -5,4 +5,10 @@ const parseBoolean = (valor: string) => {
   throw new Error("Não foi possível converter o valor para booleano.");
 }
 
-export default parseBoolean;
+const parseDate = (dataString: string) => {
+  let data = new Date(dataString);
+  if (data.toString() == "Invalid Date") return undefined;
+  return data;
+}
+
+export default { parseBoolean, parseDate };
