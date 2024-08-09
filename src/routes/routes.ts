@@ -22,7 +22,7 @@ router.delete("/produto/:id", produtoController.delete);
 // Cupom
 router.post("/cupom", cupomController.create);
 router.get("/cupom/:id", cupomController.read);
-router.get("/cupoms", cupomController.readAll);
+router.get("/cupons", cupomController.readAll);
 router.put("/cupom/:id", cupomController.update);
 router.delete("/cupom/:id", cupomController.delete);
 
