@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
+import parseBoolean from "../config/util";
 
 const prisma = new PrismaClient();
 
@@ -20,18 +21,6 @@ class ProdutoController {
     imagem: true,
   }
 
-  private consigoConverterParaBooleano(valor: string) {
-    // TODO:
-    // - implementar middleware para fazer essa validação e depois
-    //   substituir => ehNovo: this.consigoConverterParaBooleano(ehNovo) ? Boolean(ehNovo) : ehNovo
-    //   por => 'ehNovo: Boolean(ehNovo)'
-    //   obs: por hora, foi necessário fazer assim para garantir que 'ehNovo' vazio ou undefined
-    //        não fosse interpretado equivocadamente como 'false'
-    if (valor === "") return false;
-    if (valor === undefined) return false;
-    return true;
-  }
-
   public async create(request: Request, response: Response) {
     try {
       const { nome, descricao, preco, ehNovo, imagem } = request.body;
@@ -41,7 +30,7 @@ class ProdutoController {
           nome: nome,
           descricao: descricao,
           preco: parseFloat(preco),
-          ehNovo: this.consigoConverterParaBooleano(ehNovo) ? Boolean(ehNovo) : ehNovo,
+          ehNovo: parseBoolean(ehNovo),
           imagem: imagem,
         },
         select: {
@@ -115,7 +104,7 @@ class ProdutoController {
       if (nome) input.nome = nome;
       if (descricao) input.descricao = descricao;
       if (preco) input.preco = parseFloat(preco);
-      if (ehNovo) input.ehNovo = this.consigoConverterParaBooleano(ehNovo) ? Boolean(ehNovo) : ehNovo;
+      if (ehNovo) input.ehNovo = parseBoolean(ehNovo);
       if (imagem) input.imagem = imagem;
 
       const produtoAtualizado = await prisma.produto.update({
