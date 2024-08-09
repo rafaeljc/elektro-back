@@ -139,6 +139,25 @@ class CupomController {
       });
     }
   }
+
+  public async delete(request: Request, response: Response) {
+    try {
+      const { id } = request.params;
+
+      const cupomRemovido = await prisma.cupom.delete({
+        where: { 
+          id: Number(id)
+        },
+        select: CupomController.selectPadrao
+      });
+
+      return response.status(200).json(cupomRemovido);
+    } catch (error) {
+      return response.status(500).json({
+        mensagem: "Não foi possível remover o cupom."
+      });
+    }
+  }
 }
 
 export const cupomController = new CupomController();
