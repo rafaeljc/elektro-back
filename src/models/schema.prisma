@@ -48,6 +48,6 @@ model Cupom {
   jaUtilizado  Boolean  @default(false)
   compraMinima Float?
   freteGratis  Boolean?
-  possuidoPor  Usuario  @relation(fields: [usuarioId], references: [id])
-  usuarioId    Int
+  possuidoPor  Usuario?  @relation(fields: [usuarioId], references: [id])
+  usuarioId    Int?
 }
