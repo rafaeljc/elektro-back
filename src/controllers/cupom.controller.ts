@@ -72,6 +72,29 @@ class CupomController {
       });
     }
   }
+
+  public async readAll(request: Request, response: Response) {
+    try {
+      const cupons = await prisma.cupom.findMany({
+        select: {
+          id: true,
+          codigo: true,
+          nome: true,
+          descricao: true,
+          desconto: true,
+          dataValidade: true,
+          jaUtilizado: true,
+          compraMinima: true,
+          freteGratis: true,
+        }
+      });
+      return response.status(200).json(cupons);
+    } catch (error) {
+      return response.status(500).json({
+        mensagem: "Não foi possível buscar todos cupons."
+      });
+    }
+  }
 }
 
 export const cupomController = new CupomController();
