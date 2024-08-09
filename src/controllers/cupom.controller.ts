@@ -5,6 +5,17 @@ import parseBoolean from "../config/util";
 const prisma = new PrismaClient();
 
 class CupomController {
+  private static selectPadrao = {
+    codigo: true,
+    nome: true,
+    descricao: true,
+    desconto: true,
+    dataValidade: true,
+    jaUtilizado: true,
+    compraMinima: true,
+    freteGratis: true,
+  }
+
   public async create(request: Request, response: Response) {
     try {
       const { codigo, nome, descricao, desconto, dataValidade, 
@@ -33,6 +44,31 @@ class CupomController {
     } catch (error) {
       return response.status(500).json({
         mensagem: "Não foi possível cadastrar o cupom.",
+      });
+    }
+  }
+
+  public async read(request: Request, response: Response) {
+    try {
+      const { id } = request.params;
+
+      const cupom = await prisma.cupom.findUnique({
+        where: { 
+          id: Number(id)
+        },
+        select: CupomController.selectPadrao
+      });
+
+      if (!cupom) {
+        return response.status(404).json({
+          mensagem: "Cupom não cadastrado.",
+        });
+      }
+
+      return response.status(200).json(cupom);
+    } catch (error) {
+      return response.status(500).json({
+        mensagem: "Não foi possível buscar o cupom."
       });
     }
   }
