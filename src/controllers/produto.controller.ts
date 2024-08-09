@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
-import parseBoolean from "../config/util";
+import util from "../config/util";
 
 const prisma = new PrismaClient();
 
@@ -30,7 +30,7 @@ class ProdutoController {
           nome: nome,
           descricao: descricao,
           preco: parseFloat(preco),
-          ehNovo: parseBoolean(ehNovo),
+          ehNovo: util.parseBoolean(ehNovo),
           imagem: imagem,
         },
         select: {
@@ -104,7 +104,7 @@ class ProdutoController {
       if (nome) input.nome = nome;
       if (descricao) input.descricao = descricao;
       if (preco) input.preco = parseFloat(preco);
-      if (ehNovo) input.ehNovo = parseBoolean(ehNovo);
+      if (ehNovo) input.ehNovo = util.parseBoolean(ehNovo);
       if (imagem) input.imagem = imagem;
 
       const produtoAtualizado = await prisma.produto.update({

@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
-import parseBoolean from "../config/util";
+import util from "../config/util";
 
 const prisma = new PrismaClient();
 
@@ -38,10 +38,10 @@ class CupomController {
           nome: nome,
           descricao: descricao,
           desconto: parseFloat(desconto),
-          dataValidade: new Date(dataValidade),
-          jaUtilizado: parseBoolean(jaUtilizado),
+          dataValidade: util.parseDate(dataValidade),
+          jaUtilizado: util.parseBoolean(jaUtilizado),
           compraMinima: parseFloat(compraMinima),
-          freteGratis: parseBoolean(freteGratis),
+          freteGratis: util.parseBoolean(freteGratis),
         },
         select: {
           id: true
@@ -119,10 +119,10 @@ class CupomController {
       if (nome) input.nome = nome;
       if (descricao) input.descricao = descricao;
       if (desconto) input.desconto = parseFloat(desconto);
-      if (dataValidade) input.dataValidade = new Date(dataValidade);
-      if (jaUtilizado) input.jaUtilizado = parseBoolean(jaUtilizado);
+      if (dataValidade) input.dataValidade = util.parseDate(dataValidade);
+      if (jaUtilizado) input.jaUtilizado = util.parseBoolean(jaUtilizado);
       if (compraMinima) input.compraMinima = parseFloat(compraMinima);
-      if (freteGratis) input.freteGratis = parseBoolean(freteGratis);
+      if (freteGratis) input.freteGratis = util.parseBoolean(freteGratis);
 
       const cupomAtualizado = await prisma.cupom.update({
         where: {
