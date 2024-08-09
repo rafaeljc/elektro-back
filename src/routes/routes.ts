@@ -23,5 +23,6 @@ router.delete("/produto/:id", produtoController.delete);
 router.post("/cupom", cupomController.create);
 router.get("/cupom/:id", cupomController.read);
 router.get("/cupoms", cupomController.readAll);
+router.put("/cupom/:id", cupomController.update);
 
 export default router;

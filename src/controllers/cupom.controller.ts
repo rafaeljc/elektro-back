@@ -4,6 +4,17 @@ import parseBoolean from "../config/util";
 
 const prisma = new PrismaClient();
 
+type InputCupom = {
+  codigo?: string,
+  nome?: string,
+  descricao?: string,
+  desconto?: number,
+  dataValidade?: Date,
+  jaUtilizado?: boolean,
+  compraMinima?: number,
+  freteGratis?: boolean,
+}
+
 class CupomController {
   private static selectPadrao = {
     codigo: true,
@@ -92,6 +103,39 @@ class CupomController {
     } catch (error) {
       return response.status(500).json({
         mensagem: "Não foi possível buscar todos cupons."
+      });
+    }
+  }
+
+  public async update(request: Request, response: Response) {
+    try {
+      const { id } = request.params;
+      const { codigo, nome, descricao, desconto, dataValidade, 
+        jaUtilizado, compraMinima, freteGratis } = request.body;
+      
+      // definindo informações que serão atualizadas
+      let input: InputCupom = {};
+      if (codigo) input.codigo = codigo;
+      if (nome) input.nome = nome;
+      if (descricao) input.descricao = descricao;
+      if (desconto) input.desconto = parseFloat(desconto);
+      if (dataValidade) input.dataValidade = new Date(dataValidade);
+      if (jaUtilizado) input.jaUtilizado = parseBoolean(jaUtilizado);
+      if (compraMinima) input.compraMinima = parseFloat(compraMinima);
+      if (freteGratis) input.freteGratis = parseBoolean(freteGratis);
+
+      const cupomAtualizado = await prisma.cupom.update({
+        where: {
+          id: Number(id)
+        },
+        data: input,
+        select: CupomController.selectPadrao
+      });
+
+      return response.status(200).json(cupomAtualizado);
+    } catch (error) {
+      return response.status(500).json({
+        mensagem: "Não foi possível atualizar os dados do cupom."
       });
     }
   }
