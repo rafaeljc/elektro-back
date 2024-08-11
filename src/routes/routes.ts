@@ -34,5 +34,6 @@ router.delete("/usuario/produto/:idProduto", usuarioCadastraProdutoController.de
 
 // relacionamento Usuario possui Cupom
 router.post("/usuario/:idUsuario/cupom/:idCupom", usuarioPossuiCupomController.create);
+router.delete("/usuario/cupom/:idCupom", usuarioPossuiCupomController.delete);
 
 export default router;
