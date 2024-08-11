@@ -3,6 +3,7 @@ import { usuarioController } from "../controllers/usuario.controller";
 import { produtoController } from "../controllers/produto.controller";
 import { cupomController } from "../controllers/cupom.controller";
 import { usuarioCadastraProdutoController } from "../controllers/usuarioCadastraProduto.controller";
+import { usuarioPossuiCupomController } from "../controllers/usuarioPossuiCupom.controller";
 
 const router = Router();
 
@@ -30,5 +31,9 @@ router.delete("/cupom/:id", cupomController.delete);
 // relacionamento Usuario cadastra Produto
 router.post("/usuario/:idUsuario/produto/:idProduto", usuarioCadastraProdutoController.create);
 router.delete("/usuario/produto/:idProduto", usuarioCadastraProdutoController.delete);
+
+// relacionamento Usuario possui Cupom
+router.post("/usuario/:idUsuario/cupom/:idCupom", usuarioPossuiCupomController.create);
+router.delete("/usuario/cupom/:idCupom", usuarioPossuiCupomController.delete);
 
 export default router;
