@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "4ac841c7-3782-4501-8cf0-739d09f06017",
+		"name": "Produto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37429517"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nome",
+							"value": "Samsung Galaxy A15",
+							"description": "Nome do produto.",
+							"type": "text"
+						},
+						{
+							"key": "descricao",
+							"value": "128GB 6GB RAM, Dual SIM, GSM desbloqueado de fábrica, versão internacional.",
+							"description": "Descrição do produto.",
+							"type": "text"
+						},
+						{
+							"key": "preco",
+							"value": "800.00",
+							"description": "Preço do produto.",
+							"type": "text"
+						},
+						{
+							"key": "ehNovo",
+							"value": "true",
+							"description": "Indica se o produto é novo.",
+							"type": "text"
+						},
+						{
+							"key": "imagem",
+							"value": "galaxy-a15.png",
+							"description": "Imagem do produto.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3333/produto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"produto"
+					]
+				},
+				"description": "Cria um novo produo."
+			},
+			"response": []
+		},
+		{
+			"name": "read",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3333/produto/<id>",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"produto",
+						"<id>"
+					]
+				},
+				"description": "Retorna informação de um produto."
+			},
+			"response": []
+		},
+		{
+			"name": "readAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3333/produtos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"produtos"
+					]
+				},
+				"description": "Retorna informação de todos os produtos."
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nome",
+							"value": "Samsung Galaxy A15",
+							"description": "Nome do produto.",
+							"type": "text"
+						},
+						{
+							"key": "descricao",
+							"value": "128GB 6GB RAM, Dual SIM, GSM desbloqueado de fábrica, versão internacional.",
+							"description": "Descrição do produto.",
+							"type": "text"
+						},
+						{
+							"key": "preco",
+							"value": "800.00",
+							"description": "Preço do produto.",
+							"type": "text"
+						},
+						{
+							"key": "ehNovo",
+							"value": "true",
+							"description": "Indica se o produto é novo.",
+							"type": "text"
+						},
+						{
+							"key": "imagem",
+							"value": "galaxy-a15.png",
+							"description": "Imagem do produto.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3333/produto/<id>",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"produto",
+						"<id>"
+					]
+				},
+				"description": "Atualiza informação de um produto."
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3333/produto/<id>",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"produto",
+						"<id>"
+					]
+				},
+				"description": "Remove um produto."
+			},
+			"response": []
+		}
+	]
+}

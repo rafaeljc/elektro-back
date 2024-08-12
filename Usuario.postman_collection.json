@@ -1,0 +1,207 @@
+{
+	"info": {
+		"_postman_id": "1e543a6b-ec30-40ce-bd78-b2010c9c79be",
+		"name": "Usuario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37429517"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "cpf",
+							"value": "000.000.000-11",
+							"description": "CPF do usuário.",
+							"type": "text"
+						},
+						{
+							"key": "nome",
+							"value": "Fulano",
+							"description": "Nome do usuário.",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "fulano@email.com",
+							"description": "E-mail do usuário.",
+							"type": "text"
+						},
+						{
+							"key": "dataNascimento",
+							"value": "11-11-2001",
+							"description": "Data de nascimento do usuário.",
+							"type": "text"
+						},
+						{
+							"key": "telefone",
+							"value": "21-98888-7777",
+							"description": "Telefone do usuário.",
+							"type": "text"
+						},
+						{
+							"key": "senha",
+							"value": "senhaFORTE",
+							"description": "Senha do usuário.",
+							"type": "text"
+						},
+						{
+							"key": "imagemPerfil",
+							"value": "fulano.png",
+							"description": "Imagem a ser exibida no perfil do usuário.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3333/usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"usuario"
+					]
+				},
+				"description": "Cria um novo usuário."
+			},
+			"response": []
+		},
+		{
+			"name": "read",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3333/usuario/<id>",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"usuario",
+						"<id>"
+					]
+				},
+				"description": "Retorna informação de um usuário."
+			},
+			"response": []
+		},
+		{
+			"name": "readAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3333/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"usuarios"
+					]
+				},
+				"description": "Retorna informação de todos os usuários."
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "cpf",
+							"value": "000.000.000-11",
+							"description": "CPF do usuário.",
+							"type": "text"
+						},
+						{
+							"key": "nome",
+							"value": "Fulano",
+							"description": "Nome do usuário.",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "fulano@email.com",
+							"description": "E-mail do usuário.",
+							"type": "text"
+						},
+						{
+							"key": "dataNascimento",
+							"value": "11-11-2001",
+							"description": "Data de nascimento do usuário.",
+							"type": "text"
+						},
+						{
+							"key": "telefone",
+							"value": "21-98888-7777",
+							"description": "Telefone do usuário.",
+							"type": "text"
+						},
+						{
+							"key": "senha",
+							"value": "senhaFORTE",
+							"description": "Senha do usuário.",
+							"type": "text"
+						},
+						{
+							"key": "imagemPerfil",
+							"value": "fulano.png",
+							"description": "Imagem a ser exibida no perfil do usuário.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3333/usuario/<id>",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"usuario",
+						"<id>"
+					]
+				},
+				"description": "Atualiza informação de um usuário."
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3333/usuario/<id>",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"usuario",
+						"<id>"
+					]
+				},
+				"description": "Remove um usuário."
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,219 @@
+{
+	"info": {
+		"_postman_id": "5a6467ad-de4c-4edc-bf0b-f374f762def1",
+		"name": "Cupom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37429517"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "codigo",
+							"value": "#PRIMEIRACOMPRA",
+							"description": "Código pelo qual o usuário poderá usar o cupom.",
+							"type": "text"
+						},
+						{
+							"key": "nome",
+							"value": "Primeira Compra",
+							"description": "Nome do cupom.",
+							"type": "text"
+						},
+						{
+							"key": "descricao",
+							"value": "Ganhe 20% de desconto e frete grátis na sua primeira compra.",
+							"description": "Descrição do cupom.",
+							"type": "text"
+						},
+						{
+							"key": "desconto",
+							"value": "0.20",
+							"description": "Percentual de desconto.",
+							"type": "text"
+						},
+						{
+							"key": "dataValidade",
+							"value": "31-12-2024",
+							"description": "Data de validade do cupom.",
+							"type": "text"
+						},
+						{
+							"key": "jaUtilizado",
+							"value": "false",
+							"description": "Indica se o cupom já foi utilizado.",
+							"type": "text"
+						},
+						{
+							"key": "compraMinima",
+							"value": "100.00",
+							"description": "Indica o valor mínimo da compra para que o cupom seja aplicável.",
+							"type": "text"
+						},
+						{
+							"key": "freteGratis",
+							"value": "true",
+							"description": "Indica se o cupom da direito ao frete grátis.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3333/cupom",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"cupom"
+					]
+				},
+				"description": "Cria um novo cupom."
+			},
+			"response": []
+		},
+		{
+			"name": "read",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3333/cupom/<id>",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"cupom",
+						"<id>"
+					]
+				},
+				"description": "Retorna informação de um cupom."
+			},
+			"response": []
+		},
+		{
+			"name": "readAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3333/cupons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"cupons"
+					]
+				},
+				"description": "Retorna informação de todos os cupons."
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "codigo",
+							"value": "#PRIMEIRACOMPRA",
+							"description": "Código pelo qual o usuário poderá usar o cupom.",
+							"type": "text"
+						},
+						{
+							"key": "nome",
+							"value": "Primeira Compra",
+							"description": "Nome do cupom.",
+							"type": "text"
+						},
+						{
+							"key": "descricao",
+							"value": "Ganhe 20% de desconto e frete grátis na sua primeira compra.",
+							"description": "Descrição do cupom.",
+							"type": "text"
+						},
+						{
+							"key": "desconto",
+							"value": "0.20",
+							"description": "Percentual de desconto.",
+							"type": "text"
+						},
+						{
+							"key": "dataValidade",
+							"value": "31-12-2024",
+							"description": "Data de validade do cupom.",
+							"type": "text"
+						},
+						{
+							"key": "jaUtilizado",
+							"value": "false",
+							"description": "Indica se o cupom já foi utilizado.",
+							"type": "text"
+						},
+						{
+							"key": "compraMinima",
+							"value": "100.00",
+							"description": "Indica o valor mínimo da compra para que o cupom seja aplicável.",
+							"type": "text"
+						},
+						{
+							"key": "freteGratis",
+							"value": "true",
+							"description": "Indica se o cupom da direito ao frete grátis.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3333/cupom/<id>",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"cupom",
+						"<id>"
+					]
+				},
+				"description": "Atualiza informação de um cupom."
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3333/cupom/<id>",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"cupom",
+						"<id>"
+					]
+				},
+				"description": "Remove um cupom."
+			},
+			"response": []
+		}
+	]
+}
