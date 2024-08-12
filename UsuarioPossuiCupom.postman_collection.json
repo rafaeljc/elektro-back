@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "733f745b-4252-420e-994b-34ae54a4d9a8",
+		"name": "UsuarioPossuiCupom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37429517"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3333/usuario/<id_usuario>/cupom/<id_cupom>",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"usuario",
+						"<id_usuario>",
+						"cupom",
+						"<id_cupom>"
+					]
+				},
+				"description": "Insere a relação 'possui' entre uma instância de usuário e uma instância de cupom."
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3333/usuario/cupom/<id_cupom>",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"usuario",
+						"cupom",
+						"<id_cupom>"
+					]
+				},
+				"description": "Remove a relação 'possui' entre uma instância de usuário e uma instância de cupom."
+			},
+			"response": []
+		}
+	]
+}
